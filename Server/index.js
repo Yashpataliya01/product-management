@@ -19,7 +19,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",     // dev frontend
-      "https://product-management-xi-two.vercel.app/", // prod frontend
+      "https://product-management-xi-two.vercel.app", // prod frontend
     ],
     credentials: true,
   })
