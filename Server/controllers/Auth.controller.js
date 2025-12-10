@@ -61,9 +61,9 @@ export const loginUser = async (req, res) => {
 
     // Set Cookie
     res.cookie("token", token, {
-      httpOnly: false,
-      secure: false, // <-- important for localhost
-      sameSite: "Lax",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
       path: "/",
     });
 
@@ -102,9 +102,9 @@ export const getMe = async (req, res) => {
 export const logoutUser = async (req, res) => {
   try {
     res.clearCookie("token", {
-      httpOnly: false,
-      secure: false, // <-- important for localhost
-      sameSite: "Lax",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "none",
       path: "/",
     });
 

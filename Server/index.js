@@ -15,10 +15,15 @@ import AiRoutes from './routes/Ai.route.js';
 dotenv.config();
 const app = express();
 
-app.use(cors({
-  origin: 'http://localhost:5173', // frontend URL
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",     // dev frontend
+      "https://product-management-xi-two.vercel.app/", // prod frontend
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
 
