@@ -28,7 +28,7 @@ const DashboardHome = () => {
   }, []);
 
   return (
-    <div className="w-full min-h-screen md:p-10 bg-gradient-to-br from-[#1e3c72] to-[#2a5298]">
+    <div className="w-full min-h-screen md:p-10 p-4 bg-gradient-to-br from-[#1e3c72] to-[#2a5298]">
       <h1 className="text-4xl font-bold text-white mb-2">
         Welcome back, {user?.name}
       </h1>

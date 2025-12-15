@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 // Redux action
 import { loginUser } from "../../redux/actions/authActions";
+import IsAuthenticated from "../../utils/IsAuthenticated";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -19,23 +20,26 @@ const Login = () => {
     const data = Object.fromEntries(formData);
 
     try {
-      const result = await dispatch(loginUser(data));
+      const result = await dispatch(loginUser(data))
 
       if (result?.error) {
         setErrors({ submit: result.payload || "Invalid credentials" });
         return;
       }
-
-      navigate("/dashboard");
-
+      console.log("result after login:", result);
+      if (result.user.role === "client") {
+        navigate("/dashboard");
+      } else {
+        navigate("/");
+      }
     } catch (error) {
       setErrors({ submit: "Something went wrong" });
+      console.error("Login error:", error);
     }
   };
 
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-center p-12 bg-white">
-
       {/* Brand */}
       <h1 className="text-4xl font-semibold text-[rgb(49,82,139)] tracking-wide mb-10">
         Product System
